@@ -1,0 +1,10 @@
+requests
+pyaudio
+pygame
+selenium
+beautifulsoup4
+sumy
+nltk
+pyautogui
+pyttsx3
+speechrecognition

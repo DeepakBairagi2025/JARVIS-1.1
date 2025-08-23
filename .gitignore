@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# IDE Files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Audio/Media Files (optional - uncomment if you want to exclude)
+# *.mp3
+# *.wav
+# *.m4a
+# *.ogg
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Chrome Driver (if you want to exclude)
+# chromedriver.exe
+
+# Personal data files (uncomment if needed)
+# qna.txt
