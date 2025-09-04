@@ -2,6 +2,7 @@ import pyautogui as ui
 from FUNCTION.JARVIS_SPEAK.speak import *
 import random
 from DATA.JARVIS_DLG_DATASET.DLG import open_dlg
+import time
 
 def open(text):
     x = random.choice(open_dlg)

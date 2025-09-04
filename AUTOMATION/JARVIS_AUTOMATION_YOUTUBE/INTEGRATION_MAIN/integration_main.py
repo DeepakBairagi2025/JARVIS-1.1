@@ -8,10 +8,13 @@ from AUTOMATION.JARVIS_AUTOMATION_YOUTUBE.SEARCH_IN_YOUTUBE.search_in_youtube im
 from DATA.JARVIS_DLG_DATASET.DLG import x, q, x1, x2
 from FUNCTION.JARVIS_LISTEN.listen import listen
 from FUNCTION.JARVIS_SPEAK.speak import speak
+from ...JARVIS_AUTOMATION_GOOGLE.OPEN_WEBSITE.open_website import openweb
 
 
 def youtube_cmd(text):
-    if text in x:
+    if "open youtube website" in text:
+        openweb("youtube")
+    elif text in x:
         a = random.choice(q)
         speak(a)
         text = listen().lower()
@@ -133,15 +136,24 @@ def youtube_cmd(text):
     elif text == "navigate backward":
         navigate_backward()
 
-    elif text.endswith("search in youtube") or text.endswith("search in youtube"):
+    elif ("search in youtube" in text) or ("search on youtube" in text):
+        # Extract query by removing trigger phrases anywhere in the text
         text = text.replace("search in youtube", "")
         text = text.replace("search on youtube", "")
+        # Also remove a leading 'search ' if spoken like 'search <query> on youtube'
+        if text.startswith("search "):
+            text = text[7:]
+        text = text.strip()
         youtube_search(text)
 
-    elif text.endswith("search in current youtube window") or text.endswith("search on current youtube window") or text.endswith("search current youtube window"):
-        text.replace("search in current youtube window", "")
-        text.replace("search on current youtube window", "")
-        text.replace("search current youtube window", "")
+    elif ("search in current youtube window" in text) or ("search on current youtube window" in text) or ("search current youtube window" in text):
+        # Extract query by removing trigger phrases and trimming
+        text = text.replace("search in current youtube window", "")
+        text = text.replace("search on current youtube window", "")
+        text = text.replace("search current youtube window", "")
+        if text.startswith("search "):
+            text = text[7:]
+        text = text.strip()
         search_manual(text)
 
     else:

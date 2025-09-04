@@ -6,6 +6,7 @@ from FUNCTION.JARVIS_SPEAK.speak import speak
 
 
 def search_manual(text):
+    text = text.replace("search","")
     ui.press("/")
     ui.write(text)
     s12 = random.choice(s1)

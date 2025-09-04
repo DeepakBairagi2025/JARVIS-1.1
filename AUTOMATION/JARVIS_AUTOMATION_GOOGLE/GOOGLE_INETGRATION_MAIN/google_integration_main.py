@@ -5,7 +5,23 @@ from AUTOMATION.JARVIS_AUTOMATION_GOOGLE.TAB_AUTOMATION.tab_automation import *
 from AUTOMATION.COMMON_AUTOMATION.COMMON_OPEN.open import *
 
 def google_cmd(text):
-    if "open" in text:
+    # Handle specific browser 'open ...' commands first
+    if "open new tab" in text:
+        open_new_tab()
+    elif "open private window" in text:
+        open_private_window()
+    elif "open browser menu" in text:
+        open_browser_menu()
+    elif "open history" in text:
+        open_history()
+    elif "open bookmarks" in text:
+        open_bookmarks()
+    elif "open dev tools" in text:
+        open_dev_tools()
+    elif ("close tab" in text) or ("close this tab" in text) or ("close current tab" in text) or ("close active tab" in text):
+        close_tab()
+    # Generic 'open' last, to avoid Windows search being triggered for specific commands
+    elif "open" in text:
         if "website" in text or "site" in text:
             text = text.replace("open", "")
             text = text.replace("website", "")
@@ -13,8 +29,12 @@ def google_cmd(text):
             text = text.strip()
             openweb(text)
         else:
-            text = text.replace("open", "").strip()
-            open(text)
+            text = text.replace("open","")
+            text = text.strip()
+            if text == "":
+                pass
+            else:
+                open(text)
     elif "scroll up" in text:
         scroll_up()
 
