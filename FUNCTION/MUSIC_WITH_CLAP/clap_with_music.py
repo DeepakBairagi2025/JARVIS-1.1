@@ -35,12 +35,22 @@ def play_random_music(folder_path):
 
 def clap_to_music():
     tt = TapTester()
+    
+    try:
+        print("Listening for claps to start music...")
+        while True:
+            result = tt.listen()
+            if result:
+                print("Clap detected! Starting music...")
+                play_random_music(r"C:\Users\Deepak Bairagi\Desktop\JARVIS 1.1\DATA\MUSIC")
+                break
+    except KeyboardInterrupt:
+        print("Clap detection stopped by user")
+    except Exception as e:
+        print(f"Error in clap detection: {e}")
+    finally:
+        tt.stop()
 
-    while True:
-        if tt.listen():
-            play_random_music(r"C:\Users\Deepak Bairagi\Desktop\JARVIS 1.1\DATA\MUSIC")
-            tt.stop()
-            break
 
-
-clap_to_music()
+if __name__ == "__main__":
+    clap_to_music()

@@ -27,7 +27,11 @@ class TapTester(object):
         self.errorcount = 0
 
     def stop(self):
-        self.stream.close()
+        if self.stream and not self.stream.is_stopped():
+            self.stream.stop_stream()
+            self.stream.close()
+        if self.pa:
+            self.pa.terminate()
 
     def find_input_device(self):
         device_index = None
@@ -68,12 +72,14 @@ class TapTester(object):
 
     def listen(self):
         try:
-            block = self.stream.read(INPUT_FRAMES_PER_BLOCK)
-        except IOError as e:
+            if self.stream.is_stopped():
+                return False
+            block = self.stream.read(INPUT_FRAMES_PER_BLOCK, exception_on_overflow=False)
+        except Exception as e:
             self.errorcount += 1
             print("(%d) Error recording: %s" % (self.errorcount, e))
             self.noisycount = 5
-            return
+            return False
 
         amplitude = self.get_rms(block)
 
@@ -91,18 +97,24 @@ class TapTester(object):
                 self.tap_threshold *= 1
 
 
-
 def clap_detect():
-    while True:
-        tt = TapTester()
-        clap_count = 0
-
+    tt = TapTester()
+    clap_count = 0
+    
+    try:
         while True:
-            if tt.listen():
-                clap_count += 2
-
-                if clap_count == REQUIRED_CLAPS:
-                    print("clap detected")
+            result = tt.listen()
+            if result:
+                clap_count += 1
+                print(f"Clap {clap_count} detected")
+                
+                if clap_count >= REQUIRED_CLAPS:
+                    print("Required claps detected!")
                     break
+    except KeyboardInterrupt:
+        print("Clap detection stopped")
+    finally:
+        tt.stop()
 
-clap_detect()
+if __name__ == "__main__":
+    clap_detect()

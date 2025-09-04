@@ -23,4 +23,4 @@ def Function_cmd(text):
     else:
         pass
 
-Function_cmd("start clap with music system")
+#Function_cmd("find my ip")  # Commented out to prevent auto-execution

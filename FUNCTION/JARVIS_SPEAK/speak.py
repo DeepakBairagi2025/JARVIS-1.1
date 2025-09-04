@@ -25,36 +25,39 @@ driver.get("https://tts.5e7en.me/")
 
 
 def speak(text):
+    try:
+        # Wait for the element to be clickable
+        element_to_click = WebDriverWait(driver, 5).until(
+            EC.element_to_be_clickable((By.XPATH, "//*[@id='text']"))
+        )
 
-    # Wait for the element to be clickable
-    element_to_click = WebDriverWait(driver, 5).until(
-        EC.element_to_be_clickable((By.XPATH, "//*[@id='text']"))
-    )
+        # Perform the click action
+        element_to_click.click()
 
-    # Perform the click action
-    element_to_click.click()
+        # Input text into the element
+        text_to_input = text
+        element_to_click.send_keys(text_to_input)
+        print(text_to_input)
 
-    # Input text into the element
-    text_to_input = text
-    element_to_click.send_keys(text_to_input)
-    print(text_to_input)
+        # Calculate sleep duration based on sentence length
+        sleep_duration = min(0.2 + len(text) // 150, 150)  # Minimum sleep in 3 seconds, maximum is 10 seconds
 
-    # Calculate sleep duration based on sentence length
-    sleep_duration = min(0.2 + len(text) // 150, 150) # Minimum sleep in 3 seconds, maximum is 10 seconds
+        # Wait for the button to be clickable
+        button_to_click = WebDriverWait(driver, 3).until(
+            EC.element_to_be_clickable((By.XPATH, "//*[@id='button']"))
+        )
 
-    # Wait for the button to be clickable
-    button_to_click = WebDriverWait(driver, 3).until(
-        EC.element_to_be_clickable((By.XPATH, "//*[@id='button']"))
-    )
+        # Perform the click action
+        button_to_click.click()
 
-    # Perform the click action
-    button_to_click.click()
+        # Sleep fir dynamically calculated duration
+        time.sleep(sleep_duration)
 
-    # Sleep fir dynamically calculated duration
-    time.sleep(sleep_duration)
+        # Clear the text box for the next sentence
+        element_to_click.clear()
 
-    # Clear the text box for the next sentence
-    element_to_click.clear()
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
     
 """ 

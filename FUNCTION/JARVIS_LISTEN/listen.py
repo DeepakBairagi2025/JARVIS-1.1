@@ -18,14 +18,14 @@ def Trans_hindi_to_english(txt):
 
 def listen():
     recognizer = sr.Recognizer()
-    recognizer.dynamic_energy_threshold = False
-    recognizer.energy_threshold = 34000
-    recognizer.dynamic_energy_adjustment_damping = 0.010
-    recognizer.dynamic_energy_ratio = 1.0
-    recognizer.pause_threshold = 0.3
+    recognizer.dynamic_energy_threshold = True
+    recognizer.energy_threshold = 1800
+    recognizer.dynamic_energy_adjustment_damping = 0.15
+    recognizer.dynamic_energy_ratio = 1.5
+    recognizer.pause_threshold = 0.8
     recognizer.operation_timeout = None
-    recognizer.phrase_threshold = 0.2
-    recognizer.non_speaking_duration = 0.1
+    recognizer.phrase_threshold = 0.3
+    recognizer.non_speaking_duration = 0.5
     
     with sr.Microphone() as source:
         recognizer.adjust_for_ambient_noise(source)
@@ -57,14 +57,14 @@ def listen():
 
 def hearing():
     recognizer = sr.Recognizer()
-    recognizer.dynamic_energy_threshold = False
-    recognizer.energy_threshold = 34500
-    recognizer.dynamic_energy_adjustment_damping = 0.011
-    recognizer.dynamic_energy_ratio = 1.9
-    recognizer.pause_threshold = 0.3
+    recognizer.dynamic_energy_threshold = True
+    recognizer.energy_threshold = 2500
+    recognizer.dynamic_energy_adjustment_damping = 0.015
+    recognizer.dynamic_energy_ratio = 1.5
+    recognizer.pause_threshold = 0.8
     recognizer.operation_timeout = None
-    recognizer.phrase_threshold = 0.2
-    recognizer.non_speaking_duration = 0.1
+    recognizer.phrase_threshold = 0.3
+    recognizer.non_speaking_duration = 0.5
     
     with sr.Microphone() as source:
         recognizer.adjust_for_ambient_noise(source)
@@ -81,4 +81,4 @@ def hearing():
                 recognized_txt = ""
             finally:
                 print("\r",end="",flush=True)
-
+

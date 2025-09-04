@@ -264,23 +264,33 @@ wake_key_word =[
         "nedh se jago jarvis",
         "arise",
         "wake up jarvis",
+        "jarvis, its time to rise from your rest",
 ]
 
 bye_key_word = [
-    "goodbye, my friend!",
-    "farewell!",
-    "take care!",
-    "see you later aligator!"
-    "sayonara"
-    "haasta Lavista Baby!"
-    "peace out"
+    "goodbye, my friend",
+    "farewell",
+    "take care",
+    "see you later aligator",
+    "see you later alli",
+    "sayonara",
+    "hasta Lavista Baby",
+    "peace out",
+    "goodbye jarvis",
+    "goodbye jar",
+    "goodbye",
+    "good bye jarvis",
+    "good bye jar",
+    "bye jarvis",
+    "bye jar",
+    "by jarvis",
 ]
 
 res_bye = [
     "goodbye, sir. Take care and feel free to call me anytime.",
     "farewell, sir. Remember, you can reach out to me whenever you need my assistance.",
     "goodbye, sir. Call me if you need anything.",
-    "farewell, sir. If you require my service, don't hesitate to reach out."
+    "farewell, sir. If you require my service, don't hesitate to reach out.",
 ]
 
 open_dlg = [

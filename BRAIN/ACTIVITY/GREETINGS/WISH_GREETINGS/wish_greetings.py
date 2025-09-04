@@ -24,3 +24,9 @@ def wish():
     else:
         gn_dlg = random.choice(good_nightdlg)
         speak(gn_dlg)
+
+def Greeting(text):
+    if "good morning" in text or "good afternoon" in text or "good evening" in text or "good night" in text:
+        wish()
+    else:
+        pass
